@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Nova Era do Atendimento em Studios de Beleza</title>
+  <meta name="description"
+    content="Landing Page Premium + Agente IA que atende e agenda suas clientes 24 horas por dia, sem perder o toque humano que sua marca exige.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="./assets/logo-vector.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    if (typeof tailwind !== 'undefined') {
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'champagne': '#F4EDE4',
+              'offwhite': '#FBF8F4',
+              'nuderose': '#EAD7D1',
+              'gold': '#C6A664',
+              'goldlight': '#E2CB9B',
+              'cocoa': '#6F574C',
+              'cocoadark': '#4A3A33',
+              'ink': '#2B2220',
+            },
+            fontFamily: {
+              'display': ['Cormorant Garamond', 'serif'],
+              'body': ['Manrope', 'sans-serif'],
+            },
+          }
+        }
+      }
+    } else {
+      console.warn('Tailwind CDN não carregou. Verifique a conexão ou bloqueio do CDN.');
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #FBF8F4;
+      color: #2B2220;
+    }
+
+    .font-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .gold-line {
+      background: linear-gradient(90deg, transparent, #C6A664, transparent);
+      height: 1px;
+    }
+
+    .gold-text {
+      background: linear-gradient(120deg, #B7975A, #E2CB9B, #B7975A);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card-shadow {
+      box-shadow: 0 10px 40px -15px rgba(111, 87, 76, 0.18);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chip-fade {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .chip-fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* WhatsApp mock */
+    .phone-frame {
+      width: 300px;
+      border-radius: 38px;
+      background: #1f1b18;
+      padding: 12px;
+      box-shadow: 0 30px 60px -20px rgba(74, 58, 51, 0.45);
+    }
+
+    .phone-screen {
+      border-radius: 28px;
+      overflow: hidden;
+      background: #ECE4DA;
+      height: 560px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      background: #4A3A33;
+      color: #F4EDE4;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .bubble {
+      max-width: 78%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 13.5px;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .bubble.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bubble.client {
+      align-self: flex-end;
+      background: #DFF4DC;
+      border-bottom-right-radius: 4px;
+      color: #2B2220;
+    }
+
+    .bubble.agent {
+      align-self: flex-start;
+      background: #FFFFFF;
+      border-bottom-left-radius: 4px;
+      color: #2B2220;
+    }
+
+    .typing-dots span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #B7975A;
+      margin-right: 3px;
+      animation: blink 1.2s infinite;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 1px;
+      background: #C6A664;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #4A3A33, #6F574C);
+      color: #F4EDE4;
+      transition: all 0.35s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(120deg, #6F574C, #4A3A33);
+      box-shadow: 0 12px 30px -10px rgba(74, 58, 51, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid #C6A664;
+      color: #4A3A33;
+      transition: all 0.35s ease;
+    }
+
+    .btn-outline:hover {
+      background: #C6A664;
+      color: #FBF8F4;
+    }
+
+    .timeline-line {
+      background: linear-gradient(180deg, #C6A664, #EAD7D1);
+    }
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-offwhite/80 border-b border-nuderose/40">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="font-display text-2xl tracking-wide text-cocoadark">Digital<span class="gold-text">
+            Core</span></span>
+      </div>
+      <nav class="hidden md:flex items-center gap-10 text-sm font-medium text-cocoadark">
+        <a href="#solucao" class="nav-link">A Solução</a>
+        <a href="#demonstracao" class="nav-link">Como Atende</a>
+        <a href="#beneficios" class="nav-link">Benefícios</a>
+        <a href="#oferta" class="nav-link">O Que Está Incluso</a>
+      </nav>
+      <a href="#cta-final" class="btn-primary px-5 py-2.5 rounded-full text-sm font-medium tracking-wide">
+        Solicitar Demonstração
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative pt-36 pb-24 lg:pt-44 lg:pb-32 overflow-hidden">
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-nuderose/40 blur-3xl"></div>
+    <div class="absolute top-1/3 -left-40 w-[400px] h-[400px] rounded-full bg-champagne blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <div class="reveal show">
+          <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-6">Presença digital para studios de
+            beleza</p>
+          <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.05] text-cocoadark font-medium">
+            Transforme seu studio em uma
+            <span class="gold-text italic">máquina de agendamentos</span>
+          </h1>
+          <p class="mt-8 text-lg text-cocoa/90 max-w-xl leading-relaxed">
+            Landing page premium + agente de inteligência artificial que responde suas clientes
+            instantaneamente e agenda procedimentos 24 horas por dia, sem perder o toque
+            exclusivo que sua marca representa.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="#cta-final" class="btn-primary px-8 py-4 rounded-full text-sm font-medium tracking-wide">
+              Solicitar Demonstração
+            </a>
+            <a href="#demonstracao" class="btn-outline px-8 py-4 rounded-full text-sm font-medium tracking-wide">
+              Ver Como Funciona
+            </a>
+          </div>
+
+          <div class="mt-14 flex items-center gap-8">
+            <div>
+              <p class="font-display text-3xl text-cocoadark">24h</p>
+              <p class="text-xs text-cocoa/70 tracking-wide mt-1">Atendimento contínuo</p>
+            </div>
+            <div class="w-px h-10 bg-nuderose"></div>
+            <div>
+              <p class="font-display text-3xl text-cocoadark">100%</p>
+              <p class="text-xs text-cocoa/70 tracking-wide mt-1">Agenda organizada</p>
+            </div>
+            <div class="w-px h-10 bg-nuderose"></div>
+            <div>
+              <p class="font-display text-3xl text-cocoadark">0</p>
+              <p class="text-xs text-cocoa/70 tracking-wide mt-1">Clientes esquecidas</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone mockup -->
+        <div class="flex justify-center lg:justify-end reveal show" style="transition-delay: 0.15s;">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="chat-header">
+                <div
+                  class="w-9 h-9 rounded-full bg-nuderose flex items-center justify-center text-cocoadark font-display text-lg">
+                  A</div>
+                <div>
+                  <p class="text-sm font-semibold">Studio Aurora</p>
+                  <p class="text-[11px] opacity-70">online agora</p>
+                </div>
+              </div>
+              <div class="chat-body" id="hero-chat">
+                <!-- bubbles injected by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR -->
+  <section class="py-24 lg:py-32 bg-champagne/60">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-4">Um diagnóstico honesto</p>
+        <h2 class="font-display text-4xl lg:text-5xl text-cocoadark font-medium">
+          Quantas clientes você está perdendo todos os dias?
+        </h2>
+        <p class="mt-5 text-cocoa/80 leading-relaxed">
+          Muitas vezes a perda não aparece, ela simplesmente acontece em silêncio,
+          em uma mensagem que ficou sem resposta por horas demais.
+        </p>
+      </div>
+
+      <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="reveal bg-offwhite rounded-2xl p-8 card-shadow border border-nuderose/30">
+          <div class="w-12 h-12 rounded-full bg-nuderose/50 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.97-4.03 9-9 9a8.96 8.96 0 01-4.39-1.14L3 21l1.14-3.61A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-cocoadark mb-2">Mensagens sem resposta a tempo</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed">Enquanto você atende uma cliente, outras três esperam, e a
+            maioria não espera muito.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="reveal bg-offwhite rounded-2xl p-8 card-shadow border border-nuderose/30"
+          style="transition-delay: 0.05s;">
+          <div class="w-12 h-12 rounded-full bg-nuderose/50 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-cocoadark mb-2">Clientes desistindo no caminho</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed">A demora na resposta faz com que ela procure outra opção,
+            mesmo preferindo você.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="reveal bg-offwhite rounded-2xl p-8 card-shadow border border-nuderose/30"
+          style="transition-delay: 0.1s;">
+          <div class="w-12 h-12 rounded-full bg-nuderose/50 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-cocoadark mb-2">Horários vagos na agenda</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed">Espaços que poderiam estar ocupados ficam livres simplesmente
+            por falta de organização.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="reveal bg-offwhite rounded-2xl p-8 card-shadow border border-nuderose/30"
+          style="transition-delay: 0.15s;">
+          <div class="w-12 h-12 rounded-full bg-nuderose/50 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-cocoadark mb-2">Falta de organização no fluxo</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed">Sem um sistema, cada conversa depende inteiramente da sua
+            atenção naquele instante.</p>
+        </div>
+        <!-- Card 5 -->
+        <div class="reveal bg-offwhite rounded-2xl p-8 card-shadow border border-nuderose/30"
+          style="transition-delay: 0.2s;">
+          <div class="w-12 h-12 rounded-full bg-nuderose/50 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m9-9H3" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-cocoadark mb-2">Dependência total do Instagram</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed">Sem uma página própria, sua marca fica limitada ao algoritmo
+            e à disponibilidade das redes.</p>
+        </div>
+        <!-- Card 6 -->
+        <div class="reveal bg-offwhite rounded-2xl p-8 card-shadow border border-nuderose/30"
+          style="transition-delay: 0.25s;">
+          <div class="w-12 h-12 rounded-full bg-nuderose/50 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M3 8l9-5 9 5M3 8v8l9 5 9-5V8" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-cocoadark mb-2">Agendamentos perdidos</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed">Cada conversa que não termina em agendamento é uma
+            oportunidade que não volta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section id="solucao" class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-4">A solução</p>
+        <h2 class="font-display text-4xl lg:text-5xl text-cocoadark font-medium">Conheça o Digital Core</h2>
+        <p class="mt-5 text-cocoa/80 leading-relaxed">
+          Três elementos trabalhando juntos para que sua marca esteja sempre presente,
+          sempre elegante e sempre disponível.
+        </p>
+      </div>
+
+      <div class="mt-16 grid lg:grid-cols-3 gap-8">
+        <div
+          class="reveal rounded-3xl p-10 bg-gradient-to-br from-champagne to-offwhite border border-nuderose/40 card-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-cocoadark flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-goldlight" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 17V7a2 2 0 012-2h2a2 2 0 012 2v10m-6 0h6m-6 0H5a2 2 0 01-2-2V9a2 2 0 012-2h2m6 0h2a2 2 0 012 2v6a2 2 0 01-2 2" />
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl text-cocoadark mb-3">Landing Page Premium</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed mb-5">
+            Uma vitrine digital que reflete o padrão do seu trabalho, elegante,
+            profissional e construída para converter visitas em agendamentos.
+          </p>
+          <ul class="space-y-2 text-sm text-cocoadark/85">
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5">✓</span> Mais profissionalismo</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5">✓</span> Mais credibilidade</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5">✓</span> Mais conversões</li>
+          </ul>
+        </div>
+
+        <div
+          class="reveal rounded-3xl p-10 bg-gradient-to-br from-cocoadark to-cocoa text-offwhite border border-cocoa card-shadow lg:-translate-y-4"
+          style="transition-delay: 0.1s;">
+          <div class="w-14 h-14 rounded-2xl bg-goldlight flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-cocoadark" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-4 4v-4z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3">Agente IA de Atendimento</h3>
+          <p class="text-sm text-offwhite/80 leading-relaxed mb-5">
+            Sua recepção digital, sempre pronta. Responde dúvidas, qualifica
+            interesse e mantém o padrão de atendimento que sua marca exige.
+          </p>
+          <ul class="space-y-2 text-sm text-offwhite/90">
+            <li class="flex items-start gap-2"><span class="text-goldlight mt-0.5">✓</span> Respostas instantâneas</li>
+            <li class="flex items-start gap-2"><span class="text-goldlight mt-0.5">✓</span> Atendimento 24 horas</li>
+            <li class="flex items-start gap-2"><span class="text-goldlight mt-0.5">✓</span> Qualificação automática</li>
+          </ul>
+        </div>
+
+        <div
+          class="reveal rounded-3xl p-10 bg-gradient-to-br from-champagne to-offwhite border border-nuderose/40 card-shadow"
+          style="transition-delay: 0.2s;">
+          <div class="w-14 h-14 rounded-2xl bg-cocoadark flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-goldlight" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl text-cocoadark mb-3">Agendamento Inteligente</h3>
+          <p class="text-sm text-cocoa/75 leading-relaxed mb-5">
+            A agenda se organiza enquanto você trabalha. Menos tempo digitando,
+            mais tempo nas mãos que fazem a diferença.
+          </p>
+          <ul class="space-y-2 text-sm text-cocoadark/85">
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5">✓</span> Organização da agenda</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5">✓</span> Menos trabalho manual</li>
+            <li class="flex items-start gap-2"><span class="text-gold mt-0.5">✓</span> Mais horários preenchidos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMONSTRAÇÃO IA -->
+  <section id="demonstracao" class="py-24 lg:py-32 bg-cocoadark text-offwhite relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <div class="reveal order-2 lg:order-1">
+          <p class="uppercase tracking-[0.25em] text-xs font-semibold text-goldlight mb-4">Veja em ação</p>
+          <h2 class="font-display text-4xl lg:text-5xl font-medium mb-6">
+            Um atendimento que parece <span class="gold-text italic">feito por você</span>
+          </h2>
+          <p class="text-offwhite/75 leading-relaxed mb-8">
+            O agente entende a solicitação, apresenta horários disponíveis e confirma
+            o agendamento, tudo em segundos, com a mesma elegância que sua cliente
+            espera encontrar no salão.
+          </p>
+
+          <div class="space-y-5">
+            <div class="flex gap-4 items-start">
+              <div class="w-9 h-9 rounded-full bg-goldlight/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="font-display text-goldlight">1</span>
+              </div>
+              <p class="text-sm text-offwhite/80 leading-relaxed pt-1.5">A cliente envia uma mensagem, a qualquer hora
+                do dia.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-9 h-9 rounded-full bg-goldlight/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="font-display text-goldlight">2</span>
+              </div>
+              <p class="text-sm text-offwhite/80 leading-relaxed pt-1.5">O agente apresenta horários reais, disponíveis
+                na sua agenda.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-9 h-9 rounded-full bg-goldlight/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span class="font-display text-goldlight">3</span>
+              </div>
+              <p class="text-sm text-offwhite/80 leading-relaxed pt-1.5">O agendamento é confirmado e já aparece
+                organizado para você.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center order-1 lg:order-2 reveal" style="transition-delay: 0.15s;">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="chat-header">
+                <div
+                  class="w-9 h-9 rounded-full bg-nuderose flex items-center justify-center text-cocoadark font-display text-lg">
+                  A</div>
+                <div>
+                  <p class="text-sm font-semibold">Studio Aurora</p>
+                  <p class="text-[11px] opacity-70" id="status-text">online agora</p>
+                </div>
+              </div>
+              <div class="chat-body" id="demo-chat"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-4">Processo</p>
+        <h2 class="font-display text-4xl lg:text-5xl text-cocoadark font-medium">Como funciona</h2>
+      </div>
+
+      <div class="mt-20 relative max-w-3xl mx-auto">
+        <div class="absolute left-6 lg:left-1/2 top-0 bottom-0 w-px timeline-line lg:-translate-x-1/2"></div>
+
+        <div class="space-y-16">
+          <div class="reveal relative flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
+            <div class="lg:w-1/2 lg:text-right lg:pr-12 pl-16 lg:pl-0">
+              <h3 class="font-display text-2xl text-cocoadark mb-2">Cliente encontra sua página</h3>
+              <p class="text-sm text-cocoa/75 leading-relaxed">Uma landing profissional, pensada para apresentar sua
+                marca e conduzir a visita até a conversa.</p>
+            </div>
+            <div
+              class="absolute left-0 lg:left-1/2 top-0 w-12 h-12 rounded-full bg-cocoadark text-goldlight font-display text-lg flex items-center justify-center lg:-translate-x-1/2 border-4 border-offwhite">
+              01</div>
+            <div class="hidden lg:block lg:w-1/2"></div>
+          </div>
+
+          <div class="reveal relative flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
+            <div class="hidden lg:block lg:w-1/2"></div>
+            <div
+              class="absolute left-0 lg:left-1/2 top-0 w-12 h-12 rounded-full bg-cocoadark text-goldlight font-display text-lg flex items-center justify-center lg:-translate-x-1/2 border-4 border-offwhite">
+              02</div>
+            <div class="lg:w-1/2 lg:pl-12 pl-16">
+              <h3 class="font-display text-2xl text-cocoadark mb-2">A IA inicia o atendimento</h3>
+              <p class="text-sm text-cocoa/75 leading-relaxed">Dúvidas sobre procedimentos, valores e disponibilidade
+                são respondidas no mesmo instante.</p>
+            </div>
+          </div>
+
+          <div class="reveal relative flex flex-col lg:flex-row items-start gap-6 lg:gap-12">
+            <div class="lg:w-1/2 lg:text-right lg:pr-12 pl-16 lg:pl-0">
+              <h3 class="font-display text-2xl text-cocoadark mb-2">O agendamento acontece</h3>
+              <p class="text-sm text-cocoa/75 leading-relaxed">A cliente escolhe o horário e confirma, tudo em poucos
+                minutos, sem precisar esperar você responder.</p>
+            </div>
+            <div
+              class="absolute left-0 lg:left-1/2 top-0 w-12 h-12 rounded-full bg-cocoadark text-goldlight font-display text-lg flex items-center justify-center lg:-translate-x-1/2 border-4 border-offwhite">
+              03</div>
+            <div class="hidden lg:block lg:w-1/2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section id="beneficios" class="py-24 lg:py-32 bg-champagne/60">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-4">Resultado</p>
+        <h2 class="font-display text-4xl lg:text-5xl text-cocoadark font-medium leading-tight">
+          Mais tempo para atender.<br class="hidden sm:block"> Menos tempo respondendo mensagens.
+        </h2>
+      </div>
+
+      <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center">
+          <p class="font-display text-lg text-cocoadark mb-1">Atendimento 24 horas</p>
+          <p class="text-xs text-cocoa/65">mesmo fora do expediente</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center"
+          style="transition-delay: 0.05s;">
+          <p class="font-display text-lg text-cocoadark mb-1">Mais agendamentos</p>
+          <p class="text-xs text-cocoa/65">sem esforço extra</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center"
+          style="transition-delay: 0.1s;">
+          <p class="font-display text-lg text-cocoadark mb-1">Menos tarefas repetitivas</p>
+          <p class="text-xs text-cocoa/65">foco no que importa</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center"
+          style="transition-delay: 0.15s;">
+          <p class="font-display text-lg text-cocoadark mb-1">Agenda organizada</p>
+          <p class="text-xs text-cocoa/65">sem furos nem conflitos</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center">
+          <p class="font-display text-lg text-cocoadark mb-1">Experiência premium</p>
+          <p class="text-xs text-cocoa/65">do primeiro contato</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center"
+          style="transition-delay: 0.05s;">
+          <p class="font-display text-lg text-cocoadark mb-1">Mais profissionalismo</p>
+          <p class="text-xs text-cocoa/65">presença digital sólida</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center"
+          style="transition-delay: 0.1s;">
+          <p class="font-display text-lg text-cocoadark mb-1">Crescimento escalável</p>
+          <p class="text-xs text-cocoa/65">sem aumentar a equipe</p>
+        </div>
+        <div class="reveal bg-offwhite rounded-2xl p-7 border border-nuderose/30 text-center"
+          style="transition-delay: 0.15s;">
+          <p class="font-display text-lg text-cocoadark mb-1">Mais conversões</p>
+          <p class="text-xs text-cocoa/65">de visita a agendamento</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVA SOCIAL -->
+  <section class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-4">Exemplos ilustrativos</p>
+        <h2 class="font-display text-4xl lg:text-5xl text-cocoadark font-medium">O que profissionais relatam</h2>
+        <p class="mt-4 text-sm text-cocoa/60">Depoimentos representativos da experiência esperada com a implementação do
+          Digital Core.</p>
+      </div>
+
+      <div class="mt-16 grid lg:grid-cols-3 gap-6">
+        <div class="reveal bg-champagne/50 rounded-2xl p-8 border border-nuderose/40">
+          <p class="quote-mark text-5xl text-gold mb-2">"</p>
+          <p class="text-sm text-cocoa/85 leading-relaxed mb-6">
+            Passei a responder minhas clientes mesmo enquanto estava atendendo no salão,
+            sem deixar ninguém esperando.
+          </p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-nuderose flex items-center justify-center font-display text-cocoadark">M
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-cocoadark">Estúdio de Beleza</p>
+              <p class="text-xs text-cocoa/60">Exemplo ilustrativo</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal bg-champagne/50 rounded-2xl p-8 border border-nuderose/40" style="transition-delay: 0.05s;">
+          <p class="quote-mark text-5xl text-gold mb-2">"</p>
+          <p class="text-sm text-cocoa/85 leading-relaxed mb-6">
+            Minha agenda ficou muito mais organizada. Antes eu perdia tempo confirmando
+            horário por horário, agora isso acontece sozinho.
+          </p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-nuderose flex items-center justify-center font-display text-cocoadark">B
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-cocoadark">Especialista em Cílios</p>
+              <p class="text-xs text-cocoa/60">Exemplo ilustrativo</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal bg-champagne/50 rounded-2xl p-8 border border-nuderose/40" style="transition-delay: 0.1s;">
+          <p class="quote-mark text-5xl text-gold mb-2">"</p>
+          <p class="text-sm text-cocoa/85 leading-relaxed mb-6">
+            Os agendamentos aumentaram depois da implementação. A página deixou meu
+            atendimento com uma cara muito mais profissional.
+          </p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-nuderose flex items-center justify-center font-display text-cocoadark">C
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-cocoadark">Cabeleireira</p>
+              <p class="text-xs text-cocoa/60">Exemplo ilustrativo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section id="oferta" class="py-24 lg:py-32 bg-cocoadark text-offwhite relative overflow-hidden">
+    <div class="absolute -bottom-32 -left-32 w-[450px] h-[450px] bg-goldlight/10 rounded-full blur-3xl"></div>
+    <div class="max-w-5xl mx-auto px-6 lg:px-12 relative">
+      <div class="text-center reveal">
+        <p class="uppercase tracking-[0.25em] text-xs font-semibold text-goldlight mb-4">A oferta completa</p>
+        <h2 class="font-display text-4xl lg:text-5xl font-medium">O que está incluso</h2>
+        <p class="mt-5 text-offwhite/70 max-w-xl mx-auto leading-relaxed">
+          Uma solução completa de crescimento, pensada para negócios de beleza
+          que querem mais do que presença, querem resultado.
+        </p>
+      </div>
+
+      <div class="mt-16 grid sm:grid-cols-2 gap-4">
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Landing Page Premium</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.03s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Design Responsivo</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.06s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Integração com WhatsApp</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.09s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Agente IA de Atendimento</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.12s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Fluxos Automatizados</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.15s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Agendamento Inteligente</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.18s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Captação de Leads</span>
+        </div>
+        <div class="reveal flex items-center gap-4 bg-cocoa/40 border border-goldlight/20 rounded-xl p-5"
+          style="transition-delay: 0.21s;">
+          <span class="text-goldlight text-lg">✓</span>
+          <span class="text-sm">Suporte na Implementação</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="cta-final" class="py-24 lg:py-36 relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-nuderose/40 blur-3xl rounded-full">
+    </div>
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center relative reveal">
+      <p class="uppercase tracking-[0.25em] text-xs font-semibold text-gold mb-4">Vamos começar</p>
+      <h2 class="font-display text-4xl lg:text-6xl text-cocoadark font-medium leading-tight">
+        Pronta para modernizar seu atendimento?
+      </h2>
+      <p class="mt-6 text-cocoa/80 leading-relaxed text-lg">
+        Veja como automatizar seu atendimento sem perder o toque premium
+        que suas clientes esperam encontrar na sua marca.
+      </p>
+      <div class="mt-10">
+        <a href="#" class="btn-primary inline-block px-10 py-4 rounded-full text-sm font-medium tracking-wide">
+          Agendar Demonstração
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-nuderose/40 py-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="font-display text-xl text-cocoadark">Digital<span class="gold-text"> Core</span></span>
+      <p class="text-xs text-cocoa/60">© 2026 · Desenvolvido por Nevra Systems</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Chat sequences
+    function runChat(containerId, messages, loop = true, statusId = null) {
+      const container = document.getElementById(containerId);
+      let index = 0;
+
+      function showNext() {
+        if (index >= messages.length) {
+          if (loop) {
+            setTimeout(() => {
+              container.innerHTML = '';
+              index = 0;
+              showNext();
+            }, 2200);
+          }
+          return;
+        }
+        const msg = messages[index];
+
+        if (msg.typing) {
+          const typingBubble = document.createElement('div');
+          typingBubble.className = 'bubble agent show';
+          typingBubble.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span>';
+          container.appendChild(typingBubble);
+          setTimeout(() => {
+            typingBubble.remove();
+            index++;
+            showNext();
+          }, msg.delay || 900);
+          return;
+        }
+
+        const bubble = document.createElement('div');
+        bubble.className = `bubble ${msg.from}`;
+        bubble.textContent = msg.text;
+        container.appendChild(bubble);
+        requestAnimationFrame(() => bubble.classList.add('show'));
+
+        index++;
+        setTimeout(showNext, msg.delay || 1400);
+      }
+
+      showNext();
+    }
+
+    // Hero chat
+    runChat('hero-chat', [
+      { from: 'client', text: 'Oi! Vocês fazem alongamento de cílios?', delay: 1200 },
+      { typing: true, delay: 900 },
+      { from: 'agent', text: 'Olá! Sim, fazemos sim 😊 Temos horários disponíveis amanhã às 10h, 14h e 17h. Qual prefere?', delay: 1800 },
+      { from: 'client', text: 'Pode ser às 14h', delay: 1200 },
+      { typing: true, delay: 900 },
+      { from: 'agent', text: 'Perfeito! Reservei o horário das 14h para você. Posso confirmar seu nome para finalizar?', delay: 2200 },
+    ]);
+
+    // Demo chat (second section)
+    runChat('demo-chat', [
+      { from: 'client', text: 'Olá, gostaria de fazer uma escova', delay: 1300 },
+      { typing: true, delay: 1000 },
+      { from: 'agent', text: 'Olá! Ficarei feliz em ajudar. Temos horários disponíveis amanhã às 10h, 14h e 17h. Qual prefere?', delay: 2000 },
+      { from: 'client', text: '14h', delay: 1100 },
+      { typing: true, delay: 900 },
+      { from: 'agent', text: 'Perfeito! Seu horário foi reservado para amanhã às 14h. Posso confirmar seu nome?', delay: 2200 },
+    ]);
+  </script>
+
+</body>
+
+</html>

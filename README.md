@@ -148,7 +148,6 @@ Other CORE projects include:
 
 - 🧠 CORE THERAPY
 - 💈 CORE BARBER
-- ⚡ CORE DIGITAL
 
 ---
 

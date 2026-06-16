@@ -1,6 +1,6 @@
-# 💇🏼‍♀️ CORE STUDIO
+# ✨ CORE STUDIO
 
-> A premium digital showcase designed for creative studios, agencies, designers and visual creators.
+> A premium digital experience designed for hair salons, beauty studios and professional hairstylists.
 
 ## 🌐 Live Preview
 
@@ -10,26 +10,26 @@
 
 ## 📌 About The Project
 
-**CORE STUDIO** is a high-conversion landing page created for creative professionals, design studios, marketing agencies, photographers, videographers and content creators who want to present their work through a modern and premium digital experience.
+**CORE STUDIO** is a premium landing page designed for hair salons, beauty studios, hairstylists, colorists and beauty professionals who want to elevate their digital presence and attract more clients.
 
 The project combines:
 
-- Modern visual storytelling
-- Premium portfolio presentation
-- Conversion-focused design
-- Responsive architecture
+- Elegant and modern design
+- Premium beauty industry aesthetics
+- Conversion-focused structure
+- Mobile-first responsiveness
 - Professional brand positioning
 
-Built as part of the **CORE Collection** from **NEVRA SYSTEMS**, the project was designed to help creative businesses communicate value, showcase expertise and attract qualified clients.
+Built as part of the **CORE Collection** by **NEVRA SYSTEMS**, this template helps beauty professionals showcase their expertise, services and results while creating trust and generating appointment requests.
 
 ---
 
 ## ✨ Main Features
 
 ✔️ Premium Hero Section  
-✔️ Portfolio Showcase  
-✔️ Services Presentation  
-✔️ About Section  
+✔️ Services Showcase  
+✔️ Before & After Gallery  
+✔️ Professional Presentation Section  
 ✔️ Strategic Call-to-Action Areas  
 ✔️ Mobile-First Design  
 ✔️ Smooth Navigation Experience  
@@ -59,14 +59,14 @@ Optimized for:
 
 ## 🎯 Purpose
 
-The goal of this project is to demonstrate how a professional website can help creative businesses:
+The goal of this project is to help beauty professionals:
 
-- Showcase projects professionally
-- Build authority and credibility
-- Increase lead generation
-- Strengthen brand positioning
+- Attract new clients
+- Increase appointment bookings
+- Showcase services professionally
+- Build authority and trust
+- Strengthen personal branding
 - Improve online visibility
-- Convert visitors into clients
 
 ---
 
@@ -103,18 +103,18 @@ Open the `index.html` file in your browser.
 
 ## 📸 Preview
 
-<img width="1899" height="889" alt="image" src="https://github.com/user-attachments/assets/c5702601-49f0-47e5-9c55-d61ac8571a57" />
+<img width="1899" height="889" alt="DIGITAL CORE STUDIO" src="https://github.com/user-attachments/assets/a7bbf32d-86b2-4790-95e6-2395819ffd28" />
 
 ---
 
 ## 🔥 Future Improvements
 
-- Dynamic portfolio gallery
-- Integrated contact forms
+- Online booking system
 - WhatsApp integration
-- AI-powered lead qualification
-- Client testimonials section
-- Blog and content management
+- AI beauty assistant
+- Customer testimonials
+- Dynamic service catalog
+- Loyalty program integration
 - Analytics dashboard
 - SEO optimization
 
@@ -122,34 +122,34 @@ Open the `index.html` file in your browser.
 
 ## 🌌 Project Highlights
 
-### 🎨 Creative Showcase
+### ✨ Premium Beauty Design
 
-Built to present creative work with elegance and impact.
+A sophisticated aesthetic tailored for beauty brands and salons.
 
-### ⚡ Performance
+### 📸 Portfolio Ready
 
-Fast-loading structure optimized for user experience.
+Perfect for showcasing transformations, treatments and results.
 
 ### 📱 Mobile First
 
-Seamless experience across all screen sizes.
+Optimized experience across all devices.
 
 ### 🎯 Conversion Focused
 
-Designed to transform visitors into qualified leads.
+Built to transform visitors into booked appointments.
 
 ---
 
 ## 💎 CORE Collection
 
-CORE STUDIO is part of the **CORE Collection**, a suite of premium landing pages developed by NEVRA SYSTEMS for specific business niches.
+CORE STUDIO is part of the **CORE Collection**, a suite of premium landing pages developed by NEVRA SYSTEMS.
 
 Other CORE projects include:
 
 - 🧠 CORE THERAPY
 - 💈 CORE BARBER
+- 🎨 CORE STUDIO
 - ⚡ CORE DIGITAL
-- 🚀 CORE BUSINESS
 
 ---
 
@@ -175,4 +175,4 @@ This project is licensed under the MIT License.
 
 ---
 
-# 💇🏼‍♀️ CORE STUDIO © 2026
+# ✨ CORE STUDIO © 2026
